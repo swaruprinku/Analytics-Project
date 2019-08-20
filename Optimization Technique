@@ -1,0 +1,191 @@
+ 
+
+Case Study: Titan Insurance Company
+The Titan Insurance Company has just installed a new incentive payment scheme for its lift policy sales force. It wants to have an early view of the success or failure of the new scheme. Indications are that the sales force is selling more policies but sales always vary in an unpredictable pattern from month to month and it is not clear that the scheme has made a significant difference.
+Life Insurance companies typically measure the monthly output of a salesperson as the total sum assured for the policies sold by that person during the month. For example, suppose salesperson X has, in the month, sold seven policies for which the sums assured are £1000, £2500, £3000,
+£5000, £10000, £35000. X's output for the month is the total of these sums assured, £61,500. Titan's new scheme is that the sales force receive low regular salaries but are paid large bonuses related to their output (i.e. to the total sum assured of policies sold by them). The scheme is expensive for the company but they are looking for sales increases which more than compensate. The agreement with the sales force is that if the scheme does not at least break even for the company, it will be abandoned after six months.
+The scheme has now been in operation for four months. It has settled down after fluctuations in the first two months due to the changeover. To test the effectiveness of the scheme, Titan have taken a random sample of 30 salespeople measured their output in the penultimate month prior to changeover and then measured it in the fourth month after the changeover (they have deliberately chosen months not too close to the changeover). The outputs of the salespeople are shown in Table 1
+Questions:
+	Describe the five per cent significance test you would apply to these data to determine whether new scheme has significantly raised outputs?
+	What conclusion does the test lead to?
+	What reservations have you about this result? 
+	Suppose it has been calculated that in order for Titan to break even, the average output must increase by £5000. If this figure is alternative hypothesis, what is:
+	The probability of a type 1 error?
+	The probability of a type 2 error? (iii)The power of the test?
+ 
+Table 1	Titan Insurance Output
+
+
+
+Salesperson	Output (£000)
+	Old Scheme	New Scheme
+1.	57	62
+2.	103	122
+3.	59	54
+4.	75	82
+5.	84	84
+6.	73	86
+7.	35	32
+8.	110	104
+9.	44	38
+10.	82	107
+11.	67	84
+12.	64	85
+13.	78	99
+14.	53	39
+15.	41	34
+16.	39	58
+17.	80	73
+18.	87	53
+19.	73	66
+20.	65	78
+21.	28	41
+22.	62	71
+23.	49	38
+24.	84	95
+25.	63	81
+26.	77	58
+27.	67	75
+28.	101	94
+29.	91	100
+30.	50	68
+
+ 
+SOLUTIONS:
+ 
+	Describe the five per cent significance test you would apply to these data to determine whether new scheme has significantly raised outputs?
+
+The level of significance (alpha)=0.05
+The sample size is 30 (n=30), which is sufficiently large for Z test,But since the population standard deviation (sigma) is unknown, we have to use T test.
+Degrees of Freedom:- Since the sample size is same for both sampling tests , we have to use N-1 degrees of freedom =29.
+Given Information:-
+Sample size =30
+Confidence level=95%
+Null and Alternate Hypothesis:-
+H0= µ(old)-µ(new)=0
+H1= µ(old)-µ(new)<0
+Since we have to compare whether new scheme is successful as compared to old scheme (Before –After kind of scenario) ,hence Right tailed T test is to be performed .
+
+	What conclusion does the test lead to?
+
+T test Hypothesis:
+
+H0 = µ1 - µ2 = 0.  Avg Sales has not increased. 
+H1 = µ1 - µ2 ≠ 0. Avg sales has increased.
+
+α = 0.05 @ 5 % confidence level.
+
+Salesperson	Old Scheme	New Scheme	Difference 
+1	57	62	-5
+2	103	122	-19
+3	59	54	5
+4	75	82	-7
+5	84	84	0
+6	73	86	-13
+7	35	32	3
+8	110	104	6
+9	44	38	6
+10	82	107	-25
+11	67	84	-17
+12	64	85	-21
+13	78	99	-21
+14	53	39	14
+15	41	34	7
+16	39	58	-19
+17	80	73	7
+18	87	53	34
+19	73	66	7
+20	65	78	-13
+21	28	41	-13
+22	62	71	-9
+23	49	38	11
+24	84	95	-11
+25	63	81	-18
+26	77	58	19
+27	67	75	-8
+28	101	94	7
+29	91	100	-9
+30	50	68	-18
+mean	68.0333333	72.03333333	-4
+SD	20.4559802	24.06239495	14.081046
+
+t.test(my_asg$New.Scheme,my_asg$Old.Scheme,alternative = "greater",paired = T)
+
+t.test(my_asg$New.Scheme,my_asg$Old.Scheme,alternative = "greater",paired = T)
+
+	Paired t-test
+
+data:  my_asg$New.Scheme and my_asg$Old.Scheme
+t = 1.5559, df = 29, p-value = 0.06529
+alternative hypothesis: true difference in means is greater than 0
+95 percent confidence interval:
+ -0.3681762        Inf
+sample estimates:
+mean of the differences 
+                      4
+
+P-value = 0.06529.
+Since P value is higher than the 0.05, we fail to reject the NULL hypothesis. Therefore, the scheme has not improved the sales.
+
+	What reservations have you about this result? 
+
+Ans c:-
+Point 1:-
+mean(Old_Scheme)
+[1] 68.03333
+mean(New_Scheme)
+[1] 72.03333
+On comparing the means of the two sample distributions, we see that even though visually it seems as if New scheme has fared better, statistically it does not hold.
+Point 2:-
+> var(Old_Scheme)
+[1] 418.4471
+> var(New_Scheme)
+[1] 578.9989
+The variance of the second data set, 578.99, is 38% more than the variance of the first data set, 418.44.
+
+	
+	The probability of a type 1 error?
+
+Probability of Type I error = significance level = 0.05 or 5%.
+
+	The probability of a type 2 error?
+
+H0: µd = µ1 - µ2 = 0.
+H1: µd = µ1 - µ2 > 5000.
+(right tailed test)
+
+P (Type II error) = P (failed to reject H0 | H0 is False)
+= P (Do not reject H0 | µd = 5000)
+      
+ # determine critical value – R code
+qt (p = 0.05, df = 29, lower. tail = F)
+
+ 
+
+Critical Point = 1.699127 
+
+ 
+
+     > st.err <- Sd/ sqrt(30)
+> st.err
+[1] 2.570836
+       t value =   (x ̅-μ)/(S_d/√n)
+       (x ̅-μ)/(S_d/√n)    > 1.699127
+Therefore, x ̅  > 4 + 1.699127 * 2.5
+(x ̅  ) ̅   > 4.368.
+P (𝑥̅ < 4.368176 | µd = 5000) =    P ((𝑥̅ - 5 / SE) < (4.368176 – 5) / SE)
+                                                
+                                                 = P (t < -0.245846)
+
+   Calculating the probability =   pt (-0.24586, df = 29, lower. tail = F)
+                                           =   0.5962388
+
+Therefore, P (Type II error) = 59.62 % 
+
+
+(iii)The power of the test? 
+
+Power of a test = 1 – β
+                          = 1 – 0.5962388
+                         = 0.403751
+
